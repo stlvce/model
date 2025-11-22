@@ -35,8 +35,10 @@ export default function ComponentInfo({ component, onClose, onViewDetails }: Com
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all">
+        <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black opacity-50" onClick={onClose} />
+
+            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all z-60">
                 <div className="bg-linear-to-r from-blue-600 to-cyan-500 p-6 text-white relative">
                     <button
                         onClick={onClose}

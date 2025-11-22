@@ -213,10 +213,10 @@ export default function DetailedVisualization({
             ctx.fillRect(0, 0, 800, 600);
 
             ctx.fillStyle = 'rgba(59, 130, 246, 0.15)';
-            ctx.fillRect(100, 150, 600, 400);
+            ctx.fillRect(0, 0, 800, 600);
 
             ctx.fillStyle = 'rgba(120, 80, 40, 0.6)';
-            ctx.fillRect(100, 500, 600, 50);
+            ctx.fillRect(0, 500, 800, 50);
 
             particlesRef.current.forEach((particle) => {
                 if (!isPaused) {
@@ -343,7 +343,7 @@ export default function DetailedVisualization({
             ctx.fillStyle = '#1e293b';
             ctx.font = 'bold 16px system-ui';
             ctx.fillText('До фильтра', 120, 30);
-            ctx.fillText('Активированный уголь', 340, 80);
+            // ctx.fillText('Активированный уголь', 340, 80);
             ctx.fillText('После фильтра', 570, 30);
         };
 
@@ -356,13 +356,13 @@ export default function DetailedVisualization({
             gradient.addColorStop(0.5, 'rgba(147, 51, 234, 0.3)');
             gradient.addColorStop(1, 'rgba(147, 51, 234, 0.1)');
             ctx.fillStyle = gradient;
-            ctx.fillRect(350, 100, 100, 400);
+            ctx.fillRect(350, 0, 100, 600);
 
             ctx.strokeStyle = 'rgba(147, 51, 234, 0.8)';
             ctx.lineWidth = 3;
             ctx.beginPath();
-            ctx.moveTo(400, 100);
-            ctx.lineTo(400, 500);
+            ctx.moveTo(400, 0);
+            ctx.lineTo(400, 600);
             ctx.stroke();
 
             for (let i = 0; i < 8; i++) {
@@ -454,36 +454,55 @@ export default function DetailedVisualization({
 
     const data = getVisualizationData(componentId);
 
-    return (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden">
-                <div className="bg-linear-to-r from-blue-600 to-cyan-500 p-6 text-white relative">
-                    <button
-                        onClick={onClose}
-                        className="absolute top-4 right-4 text-white hover:bg-white hover:bg-opacity-20 rounded-lg p-2 transition-all"
-                    >
-                        <X size={24} />
-                    </button>
-                    <h2 className="text-3xl font-bold mb-2">{data.title}</h2>
-                    <p className="text-blue-100">{data.description}</p>
-                </div>
+    console.log(componentId);
 
-                <div className="p-6">
-                    <div className="bg-blue-50 rounded-lg p-4 mb-4">
-                        <p className="text-gray-700">{data.info}</p>
+    return (
+        <>
+            <div className="fixed inset-0 bg-black opacity-50 pointer-events-none" />
+            <div
+                className="fixed inset-0 flex justify-center z-50 p-4 overflow-y-auto"
+                onClick={onClose}
+            >
+                <div
+                    className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full h-fit z-60"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <div className="bg-linear-to-r rounded-t-2xl from-blue-600 to-cyan-500 p-6 text-white relative">
+                        <button
+                            onClick={onClose}
+                            className="group absolute top-4 right-4 text-white hover:bg-white hover:bg-opacity-20 rounded-lg p-2 transition-all"
+                        >
+                            <X className="group-hover:text-neutral-500" size={24} />
+                        </button>
+                        <h2 className="text-3xl font-bold mb-2">{data.title}</h2>
+                        <p className="text-blue-100">{data.description}</p>
                     </div>
 
-                    <div className="relative bg-gray-100 rounded-xl overflow-hidden">
-                        <canvas ref={canvasRef} className="w-full" style={{ maxHeight: '600px' }} />
-                        <button
-                            onClick={() => setIsPaused(!isPaused)}
-                            className="absolute bottom-4 right-4 bg-white text-blue-600 p-3 rounded-full shadow-lg hover:shadow-xl transition-all"
-                        >
-                            {isPaused ? <Play size={24} /> : <Pause size={24} />}
-                        </button>
+                    <div className=" p-6 relative">
+                        <div className="bg-blue-50 rounded-lg p-4 mb-4">
+                            <p className="text-gray-700">{data.info}</p>
+                        </div>
+
+                        {componentId === 'carbon' && (
+                            <p className="w-full text-center font-bold">Активированный уголь</p>
+                        )}
+
+                        <div className="bg-gray-100 rounded-xl">
+                            <canvas
+                                ref={canvasRef}
+                                className="w-full"
+                                style={{ maxHeight: '600px' }}
+                            />
+                            <button
+                                className="fixed bottom-4 right-10 border-2 shadow-2xl border-neutral-300  bg-white text-blue-600 p-3 rounded-full shadow-lg hover:shadow-xl transition-all"
+                                onClick={() => setIsPaused(!isPaused)}
+                            >
+                                {isPaused ? <Play size={24} /> : <Pause size={24} />}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
