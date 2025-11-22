@@ -29,9 +29,11 @@ function App() {
             'outlet',
         ])
     )
-    const [soundEnabled, setSoundEnabled] = useState(true)
+    const [soundEnabled, setSoundEnabled] = useState(false)
 
     useEffect(() => {
+        if (!soundEnabled) return
+
         soundManager.initialize()
         soundManager.playBackgroundAmbient()
 
