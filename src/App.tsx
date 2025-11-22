@@ -1,21 +1,18 @@
-import { useState, useEffect } from 'react'
-import { Video } from 'lucide-react'
-import Scene3D from './components/Scene3D'
-import ComponentInfo from './components/ComponentInfo'
-import DetailedVisualization from './components/DetailedVisualization'
-import ControlPanel from './components/ControlPanel'
-import VideoModal from './components/VideoModal'
-import { ComponentData } from './types'
-import { soundManager } from './utils/soundManager'
+import { useState, useEffect } from 'react';
+import { Video } from 'lucide-react';
+import Scene3D from './components/Scene3D';
+import ComponentInfo from './components/ComponentInfo';
+import DetailedVisualization from './components/DetailedVisualization';
+import ControlPanel from './components/ControlPanel';
+import VideoModal from './components/VideoModal';
+import { ComponentData } from './types';
+import { soundManager } from './utils/soundManager';
 
 function App() {
-    const [selectedComponent, setSelectedComponent] =
-        useState<ComponentData | null>(null)
-    const [detailedViewComponent, setDetailedViewComponent] = useState<
-        string | null
-    >(null)
-    const [videoComponent, setVideoComponent] = useState<string | null>(null)
-    const [activeTab, setActiveTab] = useState<'control' | 'video'>('control')
+    const [selectedComponent, setSelectedComponent] = useState<ComponentData | null>(null);
+    const [detailedViewComponent, setDetailedViewComponent] = useState<string | null>(null);
+    const [videoComponent, setVideoComponent] = useState<string | null>(null);
+    const [activeTab, setActiveTab] = useState<'control' | 'video'>('control');
     const [visibleProcesses, setVisibleProcesses] = useState<Set<string>>(
         new Set([
             'inlet',
@@ -27,60 +24,60 @@ function App() {
             'disinfection',
             'storage',
             'outlet',
-        ])
-    )
-    const [soundEnabled, setSoundEnabled] = useState(false)
+        ]),
+    );
+    const [soundEnabled, setSoundEnabled] = useState(false);
 
     useEffect(() => {
-        if (!soundEnabled) return
+        if (!soundEnabled) return;
 
-        soundManager.initialize()
-        soundManager.playBackgroundAmbient()
+        soundManager.initialize();
+        soundManager.playBackgroundAmbient();
 
         const interval = setInterval(() => {
             if (soundEnabled) {
-                soundManager.playBackgroundAmbient()
+                soundManager.playBackgroundAmbient();
             }
-        }, 6000)
+        }, 6000);
 
-        return () => clearInterval(interval)
-    }, [soundEnabled])
+        return () => clearInterval(interval);
+    }, [soundEnabled]);
 
     const handleComponentClick = (component: ComponentData) => {
-        setSelectedComponent(component)
-        soundManager.playClickSound()
-    }
+        setSelectedComponent(component);
+        soundManager.playClickSound();
+    };
 
     const handleViewDetails = (componentId: string) => {
-        setDetailedViewComponent(componentId)
-        setSelectedComponent(null)
-        soundManager.playWaterFlow()
-    }
+        setDetailedViewComponent(componentId);
+        setSelectedComponent(null);
+        soundManager.playWaterFlow();
+    };
 
     const handleToggleProcess = (processType: string) => {
         setVisibleProcesses((prev) => {
-            const newSet = new Set(prev)
+            const newSet = new Set(prev);
             if (newSet.has(processType)) {
-                newSet.delete(processType)
+                newSet.delete(processType);
             } else {
-                newSet.add(processType)
+                newSet.add(processType);
             }
-            return newSet
-        })
-        soundManager.playClickSound()
-    }
+            return newSet;
+        });
+        soundManager.playClickSound();
+    };
 
     const handleToggleSound = () => {
-        const newState = !soundEnabled
-        setSoundEnabled(newState)
-        soundManager.setEnabled(newState)
-    }
+        const newState = !soundEnabled;
+        setSoundEnabled(newState);
+        soundManager.setEnabled(newState);
+    };
 
     const handleOpenVideo = (componentId: string) => {
-        setVideoComponent(componentId)
-        setDetailedViewComponent(null)
-        soundManager.playClickSound()
-    }
+        setVideoComponent(componentId);
+        setDetailedViewComponent(null);
+        soundManager.playClickSound();
+    };
 
     return (
         <div className="min-h-screen bg-linear-to-br from-blue-50 via-cyan-50 to-blue-100">
@@ -112,11 +109,7 @@ function App() {
                                     'disinfection',
                                 ].includes(selectedComponent.type) && (
                                     <button
-                                        onClick={() =>
-                                            handleOpenVideo(
-                                                selectedComponent.id
-                                            )
-                                        }
+                                        onClick={() => handleOpenVideo(selectedComponent.id)}
                                         className="bg-white text-red-600 px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                                     >
                                         <Video size={20} />
@@ -197,15 +190,13 @@ function App() {
                                             <button
                                                 key={item.id}
                                                 onClick={() => {
-                                                    setVideoComponent(item.id)
-                                                    soundManager.playClickSound()
+                                                    setVideoComponent(item.id);
+                                                    soundManager.playClickSound();
                                                 }}
                                                 className="w-full text-left p-4 bg-linear-to-r from-blue-50 to-cyan-50 rounded-lg hover:shadow-md transition-all border border-blue-100 hover:border-blue-300 group"
                                             >
                                                 <div className="flex items-center gap-3">
-                                                    <span className="text-2xl">
-                                                        {item.icon}
-                                                    </span>
+                                                    <span className="text-2xl">{item.icon}</span>
                                                     <div className="flex-1">
                                                         <p className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
                                                             {item.name}
@@ -244,13 +235,10 @@ function App() {
             )}
 
             {videoComponent && (
-                <VideoModal
-                    componentId={videoComponent}
-                    onClose={() => setVideoComponent(null)}
-                />
+                <VideoModal componentId={videoComponent} onClose={() => setVideoComponent(null)} />
             )}
         </div>
-    )
+    );
 }
 
-export default App
+export default App;

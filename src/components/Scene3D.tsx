@@ -198,7 +198,7 @@ export default function Scene3D({ onComponentClick, visibleProcesses }: Scene3DP
                 }
 
                 ctx.fillStyle = '#fff';
-                ctx.font = 'bold 11px system-ui';
+                ctx.font = isHovered ? 'bold 13px system-ui' : 'bold 11px system-ui';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
 

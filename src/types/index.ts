@@ -1,11 +1,11 @@
 export interface ComponentData {
-    id: string
-    name: string
-    description: string
-    position: { x: number; y: number; z: number }
-    pressure: number
-    flowRate: number
-    status: 'normal' | 'warning' | 'error'
+    id: string;
+    name: string;
+    description: string;
+    position: { x: number; y: number; z: number };
+    pressure: number;
+    flowRate: number;
+    status: 'normal' | 'warning' | 'error';
     type:
         | 'prefilter'
         | 'aeration'
@@ -15,11 +15,11 @@ export interface ComponentData {
         | 'storage'
         | 'pump'
         | 'inlet'
-        | 'outlet'
+        | 'outlet';
 }
 
 export interface Connection {
-    from: string
-    to: string
-    points: { x: number; y: number; z: number }[]
+    from: string;
+    to: string;
+    points: { x: number; y: number; z: number }[];
 }

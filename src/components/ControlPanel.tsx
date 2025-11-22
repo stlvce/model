@@ -1,19 +1,10 @@
-import {
-    Filter,
-    Wind,
-    Droplet,
-    Layers,
-    Zap,
-    Archive,
-    Volume2,
-    VolumeX,
-} from 'lucide-react'
+import { Filter, Wind, Droplet, Layers, Zap, Archive, Volume2, VolumeX } from 'lucide-react';
 
 interface ControlPanelProps {
-    visibleProcesses: Set<string>
-    onToggleProcess: (processType: string) => void
-    soundEnabled: boolean
-    onToggleSound: () => void
+    visibleProcesses: Set<string>;
+    onToggleProcess: (processType: string) => void;
+    soundEnabled: boolean;
+    onToggleSound: () => void;
 }
 
 export default function ControlPanel({
@@ -32,7 +23,7 @@ export default function ControlPanel({
         { id: 'disinfection', name: 'Дезинфекция', icon: Zap },
         { id: 'storage', name: 'Резервуар', icon: Archive },
         { id: 'outlet', name: 'Выходной поток', icon: Droplet },
-    ]
+    ];
 
     return (
         <div className="bg-white rounded-2xl shadow-xl p-7 flex flex-col h-full">
@@ -46,18 +37,14 @@ export default function ControlPanel({
                             : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
                     }`}
                 >
-                    {soundEnabled ? (
-                        <Volume2 size={20} />
-                    ) : (
-                        <VolumeX size={20} />
-                    )}
+                    {soundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
                 </button>
             </div>
 
             <div className="space-y-3 flex-1 overflow-y-auto">
                 {processes.map((process) => {
-                    const Icon = process.icon
-                    const isVisible = visibleProcesses.has(process.id)
+                    const Icon = process.icon;
+                    const isVisible = visibleProcesses.has(process.id);
 
                     return (
                         <button
@@ -70,13 +57,11 @@ export default function ControlPanel({
                             }`}
                         >
                             <Icon size={20} />
-                            <span className="font-semibold text-sm">
-                                {process.name}
-                            </span>
+                            <span className="font-semibold text-sm">{process.name}</span>
                         </button>
-                    )
+                    );
                 })}
             </div>
         </div>
-    )
+    );
 }
