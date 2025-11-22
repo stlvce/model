@@ -65,7 +65,7 @@ export default function ControlPanel({
                             onClick={() => onToggleProcess(process.id)}
                             className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all ${
                                 isVisible
-                                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md hover:shadow-lg'
+                                    ? 'bg-linear-to-r from-blue-500 to-cyan-500 text-white shadow-md hover:shadow-lg'
                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                             }`}
                         >

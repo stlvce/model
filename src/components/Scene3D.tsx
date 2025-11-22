@@ -15,8 +15,16 @@ export default function Scene3D({
     const [hoveredComponent, setHoveredComponent] = useState<string | null>(
         null
     )
-    const animationRef = useRef<number>()
-    const particlesRef = useRef<any[]>([])
+    const animationRef = useRef<number | null>(null)
+    const particlesRef = useRef<
+        {
+            progress: number
+            speed: number
+            offset: number
+            size: number
+            opacity: number
+        }[]
+    >([])
 
     useEffect(() => {
         const canvas = canvasRef.current

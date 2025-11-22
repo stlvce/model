@@ -41,7 +41,7 @@ export default function ComponentInfo({
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all">
-                <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-6 text-white relative">
+                <div className="bg-linear-to-r from-blue-600 to-cyan-500 p-6 text-white relative">
                     <button
                         onClick={onClose}
                         className="absolute top-4 right-4 text-white hover:bg-white hover:bg-opacity-20 rounded-lg p-2 transition-all"
@@ -109,7 +109,7 @@ export default function ComponentInfo({
                     ].includes(component.type) && (
                         <button
                             onClick={() => onViewDetails(component.id)}
-                            className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all"
+                            className="w-full bg-linear-to-r from-blue-600 to-cyan-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all"
                         >
                             Подробная визуализация процесса
                         </button>

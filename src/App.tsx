@@ -81,11 +81,11 @@ function App() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100">
+        <div className="min-h-screen bg-linear-to-br from-blue-50 via-cyan-50 to-blue-100">
             <div className="container mx-auto px-4 py-8 h-screen flex flex-col">
                 <header className="mb-8">
                     <div>
-                        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-2">
+                        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-cyan-500 mb-2">
                             Цифровой двойник системы очистки воды
                         </h1>
                         <p className="text-gray-600 text-lg">
@@ -124,14 +124,14 @@ function App() {
                         </div>
                     </div>
 
-                    <div className="w-96 flex-shrink-0 flex flex-col gap-4">
-                        <div className="bg-white rounded-2xl shadow-xl p-4 flex-shrink-0">
+                    <div className="w-96 shrink-0 flex flex-col gap-4">
+                        <div className="bg-white rounded-2xl shadow-xl p-4 shrink-0">
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setActiveTab('control')}
                                     className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-all ${
                                         activeTab === 'control'
-                                            ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg'
+                                            ? 'bg-linear-to-r from-blue-600 to-cyan-500 text-white shadow-lg'
                                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                     }`}
                                 >
@@ -141,7 +141,7 @@ function App() {
                                     onClick={() => setActiveTab('video')}
                                     className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
                                         activeTab === 'video'
-                                            ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg'
+                                            ? 'bg-linear-to-r from-blue-600 to-cyan-500 text-white shadow-lg'
                                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                     }`}
                                 >
@@ -198,7 +198,7 @@ function App() {
                                                     setVideoComponent(item.id)
                                                     soundManager.playClickSound()
                                                 }}
-                                                className="w-full text-left p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg hover:shadow-md transition-all border border-blue-100 hover:border-blue-300 group"
+                                                className="w-full text-left p-4 bg-linear-to-r from-blue-50 to-cyan-50 rounded-lg hover:shadow-md transition-all border border-blue-100 hover:border-blue-300 group"
                                             >
                                                 <div className="flex items-center gap-3">
                                                     <span className="text-2xl">

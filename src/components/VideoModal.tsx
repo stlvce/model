@@ -6,7 +6,10 @@ interface VideoModalProps {
 }
 
 export default function VideoModal({ componentId, onClose }: VideoModalProps) {
-    const videoData: Record<string, any> = {
+    const videoData: Record<
+        string,
+        { title: string; description: string; embedUrl: string }
+    > = {
         prefilter: {
             title: 'Предварительная фильтрация воды',
             description: 'Механическая очистка от крупных частиц и примесей',
@@ -40,7 +43,7 @@ export default function VideoModal({ componentId, onClose }: VideoModalProps) {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-6 text-white relative">
+                <div className="bg-linear-to-r from-blue-600 to-cyan-500 p-6 text-white relative">
                     <button
                         onClick={onClose}
                         className="absolute top-4 right-4 text-white hover:bg-white hover:bg-opacity-20 rounded-lg p-2 transition-all"
